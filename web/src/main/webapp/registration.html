@@ -21,11 +21,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <div id="colorlib-logo"><a href="index.html">FitnessCamp</a></div>
+                    <div id="colorlib-logo"><a href="index.jsp">FitnessCamp</a></div>
                 </div>
                 <div class="col-md-10 text-right menu-1">
                     <ul>
-                        <li class="active"><a href="index.html">Главная</a></li>
+                        <li class="active"><a href="index.jsp">Главная</a></li>
                         <li class="has-dropdown">
                             <a href="classes.html">Группы</a>
                             <ul class="dropdown">
@@ -53,11 +53,29 @@
     <div class="login-block">
         <img src="images/1.png" alt="your foto"><br>
 
-        <form action="auth" method="post">
+        <form action="regist" method="post">
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
                     <input name="login" type="text" class="form-control" placeholder="Ваш логин">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                    <input name="firstname" type="text" class="form-control" placeholder="Ваше имя">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                    <input name="lastname" type="text" class="form-control" placeholder="Ваша фамилия">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <input name="birthdate" type="date" class="form-control" value="2000-01-01"  min="1900-01-01" max="2020-12-31">
                 </div>
             </div>
             <div class="form-group">
@@ -94,7 +112,7 @@
     </div>
 
     <div class="login-links">
-        <p class="text-center"> <a class="txt-brand" href="index.html"><font color=#29aafe>На главную</font></a></p>
+        <p class="text-center"> <a class="txt-brand" href="index.jsp"><font color=#29aafe>На главную</font></a></p>
     </div>
 
 </main>

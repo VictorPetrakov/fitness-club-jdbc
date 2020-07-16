@@ -1,6 +1,8 @@
 package com.victorp.web.servlet;
 
-import com.victorp.model.Contact;
+import com.victorp.model.Admin;
+import com.victorp.model.Client;
+import com.victorp.model.Trainer;
 import com.victorp.services.AuthorizationService;
 import com.victorp.services.impl.AuthorizationServiceImpl;
 
@@ -17,6 +19,7 @@ public class LoginServlet extends HttpServlet {
 
     public static final String LOGIN_PARAM = "login";
     public static final String PASSWORD_PARAM = "password";
+    public static final String ID_ROLE = "role";
 
     private final AuthorizationService authorizationService = AuthorizationServiceImpl.getInstance();
 
@@ -24,24 +27,75 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String login = req.getParameter(LOGIN_PARAM);
         final String password = req.getParameter(PASSWORD_PARAM);
+        final int role = Integer.valueOf(req.getParameter(ID_ROLE));
 
-        final Contact contact = authorizationService.authorize(login, password);
+        final Client client;
+        final Trainer trainer;
+        final Admin admin;
 
-        final String contextPath = req.getContextPath();
+        switch (role) {
+            case 1:
+                try {
+                    admin = authorizationService.authorizeAdmin(login, password);
+                    final String contextPath = req.getContextPath();
 
-        if (contact == null) {
-            resp.sendRedirect(contextPath + "/login.html");
-        } else {
-            final HttpSession session = req.getSession();
-            session.setAttribute(USER_ID_PARAM, contact.getId());
+                    if (admin == null) {
+                        resp.sendRedirect(contextPath + "/login.html");
+                    } else {
+                        final HttpSession session = req.getSession();
+                        session.setAttribute(USER_ID_PARAM, admin.getId());
+                        req.setAttribute("username", admin.getFirstName() + " " + admin.getLastName());
+                        final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
+                        resp.addCookie(myOwnCookie);
+                    }
 
-            final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
-            resp.addCookie(myOwnCookie);
-            req.setAttribute("username", contact.getFirstName() + " " + contact.getLastName());
-            resp.setContentType("text/html");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 2:
+                try {
+                    trainer = authorizationService.authorizeTrainer(login, password);
+                    final String contextPath = req.getContextPath();
 
-            final RequestDispatcher dispatcher = req.getRequestDispatcher("index.html");
+                    if (trainer == null) {
+                        resp.sendRedirect(contextPath + "/login.html");
+                    } else {
+                        final HttpSession session = req.getSession();
+                        session.setAttribute(USER_ID_PARAM, trainer.getId());
+                        req.setAttribute("username", trainer.getFirstName() + " " + trainer.getLastName());
+                        final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
+                        resp.addCookie(myOwnCookie);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 3:
+                try {
+                    client = authorizationService.authorizeClient(login, password);
+                    final String contextPath = req.getContextPath();
+
+                    if (client == null) {
+                        resp.sendRedirect(contextPath + "/login.html");
+                    } else {
+                        final HttpSession session = req.getSession();
+                        session.setAttribute(USER_ID_PARAM, client.getId());
+                        req.setAttribute("username", client.getFirstName() + " " + client.getLastName());
+                        final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
+                        resp.addCookie(myOwnCookie);
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+            resp.setContentType("text/html;charset=UTF-8");
+            final RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
             dispatcher.include(req, resp);
         }
     }
-}
+

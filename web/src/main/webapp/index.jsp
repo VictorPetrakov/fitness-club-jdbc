@@ -1,11 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE HTML>
-
-
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Robust Template</title>
+	<title>FitnessCamp</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -65,11 +65,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-2">
-							<div id="colorlib-logo"><a href="index.html">FitnessCamp</a></div>
+							<div id="colorlib-logo"><a href="index.jsp">FitnessCamp</a></div>
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="index.html">Главная</a></li>
+								<li class="active"><a href="index.jsp">Главная</a></li>
 								<li class="has-dropdown">
 									<a href="classes.html">Группы</a>
 									<ul class="dropdown">
@@ -88,6 +88,7 @@
 								<li><a href="event.html">События</a></li>
 								<li><a href="blog.html">Блог</a></li>
 								<li><a href="contact.html">Контакты</a></li>
+								<li><a href=#>Администрирование</a></li>
 								<li><a href="login.html">Войти</a></li>
 								<!--<li class="btn-cta"><a href="#"><span><i class="icon-cart"></i></span></a></li>-->
 							</ul>

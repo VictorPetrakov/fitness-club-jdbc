@@ -1,3 +1,15 @@
 .idea
+*.iml
+
+db/target
+db/logs
+
+model/target
+
+services/target
+
+web/target
+
+
 
 

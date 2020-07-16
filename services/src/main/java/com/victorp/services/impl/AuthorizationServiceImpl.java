@@ -1,34 +1,61 @@
 package com.victorp.services.impl;
 
-import com.victorp.model.Contact;
+import com.victorp.db.connection.JdbcProvider;
+import com.victorp.db.dao.impl.JdbcAdminDaoImpl;
+import com.victorp.db.dao.impl.JdbcClientDaoImpl;
+import com.victorp.db.dao.impl.JdbcTrainerDaoImpl;
+import com.victorp.model.Admin;
+import com.victorp.model.Client;
+import com.victorp.model.Trainer;
 import com.victorp.services.AuthorizationService;
+
+import java.sql.Connection;
 
 public class AuthorizationServiceImpl implements AuthorizationService {
 
-   private static AuthorizationService instance;
+    private static AuthorizationService instance;
 
-    public static AuthorizationService getInstance(){
+    public static AuthorizationService getInstance() {
 
-        if(instance == null){
-            synchronized (AuthorizationService.class){
-                if(instance == null){
+        if (instance == null) {
+            synchronized (AuthorizationService.class) {
+                if (instance == null) {
                     instance = new AuthorizationServiceImpl();
                 }
             }
         }
         return instance;
     }
-    private AuthorizationServiceImpl(){}
+
+    private AuthorizationServiceImpl() {
+    }
 
 
     @Override
-    public Contact authorize(String login, String password) {
-        if("admin".equals(login) && "admin".equals(password) ) {
-            final Contact contact =  new Contact("admin", "admin", "Victor", "Petrakov");
-            contact.setId(-1L);
-            return contact;
-        }else{
-            return null;
-        }
+    public Client authorizeClient(String login, String password) throws Exception {
+
+        JdbcClientDaoImpl jdbcClientDaoImpl = new JdbcClientDaoImpl();
+        Client client = jdbcClientDaoImpl.signUp(login, password);
+
+        return client;
     }
+
+    @Override
+    public Trainer authorizeTrainer(String login, String password) throws Exception{
+
+        JdbcTrainerDaoImpl jdbcTrainerDaoImpl = new JdbcTrainerDaoImpl();
+        Trainer trainer = jdbcTrainerDaoImpl.signUp(login, password);
+
+        return trainer;
+    }
+
+    @Override
+    public Admin authorizeAdmin(String login, String password) throws Exception {
+        JdbcAdminDaoImpl jdbcAdminDaoImpl = new JdbcAdminDaoImpl();
+        Admin admin = jdbcAdminDaoImpl.signUp(login, password);
+
+        return admin;
+    }
+
+
 }

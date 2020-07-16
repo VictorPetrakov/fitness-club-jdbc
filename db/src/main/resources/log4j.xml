@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true" name="XMLConfigTest">
+    <Properties>
+        <Property name="filename">logs/test.log</Property>
+        <Property name="pattern">%highlight{[%d{dd/MMM/yyyy:HH:mm:ss,SSS}] %t %X %-5p %c{10}: %m%n%ex}</Property>
+    </Properties>
+
+    <Appenders>
+        <Appender type="Console" name="STDOUT">
+            <Layout type="PatternLayout">
+                <Pattern>${pattern}</Pattern>
+            </Layout>
+        </Appender>
+
+        <Appender type="File" name="File" fileName="${filename}">
+            <Layout type="PatternLayout">
+                <Pattern>${pattern}</Pattern>
+            </Layout>
+        </Appender>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
