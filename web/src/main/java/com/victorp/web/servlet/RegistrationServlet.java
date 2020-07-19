@@ -1,9 +1,7 @@
 package com.victorp.web.servlet;
 
 import com.victorp.model.Client;
-import com.victorp.services.AuthorizationService;
 import com.victorp.services.RegistrationService;
-import com.victorp.services.impl.AuthorizationServiceImpl;
 import com.victorp.services.impl.RegistrationServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/regist")

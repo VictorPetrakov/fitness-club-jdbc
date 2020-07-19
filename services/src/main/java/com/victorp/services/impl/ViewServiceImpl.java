@@ -30,23 +30,23 @@ public class ViewServiceImpl implements ViewService {
     }
 
     @Override
-    public List<Client> viewClients(List<Client> clientList) throws Exception {
+    public List<Client> viewClients() throws Exception {
         JdbcClientDaoImpl jdbcClientDaoImpl = new JdbcClientDaoImpl();
-        jdbcClientDaoImpl.getAll();
+        List<Client> clientList =jdbcClientDaoImpl.getAll();
         return clientList;
     }
 
     @Override
-    public List<Admin> viewAdmins(List<Admin> adminList) throws Exception {
+    public List<Admin> viewAdmins() throws Exception {
         JdbcAdminDaoImpl jdbcAdminDao = new JdbcAdminDaoImpl();
-        jdbcAdminDao.getAll();
+        List<Admin> adminList = jdbcAdminDao.getAll();
         return adminList;
     }
 
     @Override
-    public List<Trainer> viewTrainers(List<Trainer> trainerList) throws Exception {
+    public List<Trainer> viewTrainers() throws Exception {
         JdbcTrainerDaoImpl jdbcTrainerDao = new JdbcTrainerDaoImpl();
-        jdbcTrainerDao.getAll();
+        List<Trainer> trainerList = jdbcTrainerDao.getAll();
         return trainerList;
     }
 }

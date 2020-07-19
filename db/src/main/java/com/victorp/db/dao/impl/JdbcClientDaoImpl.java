@@ -107,7 +107,7 @@ public class JdbcClientDaoImpl implements ClientDao {
     @Override
     public Client get(Long id) throws Exception {
         try (Connection c = JdbcProvider.getConnection()) {
-            try (PreparedStatement ps = c.prepareStatement("SELECT * FROM `clients` WHERE id = ?")) {
+            try (PreparedStatement ps = c.prepareStatement("SELECT * FROM clients WHERE id = ?")) {
                 ps.setLong(1, id);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
@@ -128,7 +128,7 @@ public class JdbcClientDaoImpl implements ClientDao {
     public List<Client> getAll() throws Exception {
         try (Connection c = JdbcProvider.getConnection()) {
             try (Statement s = c.createStatement()) {
-                try (ResultSet rs = s.executeQuery("SELECT * FROM `clients`")) {
+                try (ResultSet rs = s.executeQuery("SELECT * FROM clients")) {
                     List<Client> clientList = new ArrayList<>();
                     while (rs.next()) {
                         final Client client = fillClient(rs);
@@ -189,6 +189,9 @@ public class JdbcClientDaoImpl implements ClientDao {
         client.setPassword(rs.getString("password"));
         client.setFirstName(rs.getString("firstName"));
         client.setLastName(rs.getString("lastName"));
+        client.setBirthdate(rs.getString("birthdate"));
+        client.setEmail(rs.getString("email"));
+        client.setGroups(rs.getString("groups"));
         return client;
     }
 
