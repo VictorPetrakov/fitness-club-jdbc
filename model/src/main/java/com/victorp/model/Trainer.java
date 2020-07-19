@@ -11,7 +11,7 @@ public class Trainer {
     private String password;
     private String firstName;
     private String lastName;
-    private Date birthdate;
+    private String birthdate;
     private String email;
     private String group;
     private static final int idRole = 2;
@@ -21,7 +21,7 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Trainer(Long id, String login, String password, String firstName, String lastName, Date birthdate, String email, String group) {
+    public Trainer(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, String group) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -72,11 +72,11 @@ public class Trainer {
         this.lastName = lastName;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

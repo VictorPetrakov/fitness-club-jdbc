@@ -1,12 +1,12 @@
 package com.victorp.services.impl;
 
-
+import com.victorp.db.dao.impl.JdbcAdminDaoImpl;
 import com.victorp.db.dao.impl.JdbcClientDaoImpl;
+import com.victorp.db.dao.impl.JdbcTrainerDaoImpl;
+import com.victorp.model.Admin;
 import com.victorp.model.Client;
+import com.victorp.model.Trainer;
 import com.victorp.services.RegistrationService;
-
-import java.sql.Date;
-import java.util.List;
 
 public class RegistrationServiceImpl implements RegistrationService {
     private static RegistrationService instance;
@@ -28,19 +28,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public void createClient(Client client) throws Exception {
-
         JdbcClientDaoImpl jdbcClientDaoImpl = new JdbcClientDaoImpl();
         jdbcClientDaoImpl.create(client);
 
     }
 
     @Override
-    public void createTrainer() {
-
+    public void createTrainer(Trainer trainer) throws Exception {
+        JdbcTrainerDaoImpl jdbcTrainerDaoImpl = new JdbcTrainerDaoImpl();
+        jdbcTrainerDaoImpl.create(trainer);
     }
 
     @Override
-    public void createAdmin() {
-
+    public void createAdmin(Admin admin) throws Exception {
+        JdbcAdminDaoImpl jdbcAdminDaoImpl = new JdbcAdminDaoImpl();
+        jdbcAdminDaoImpl.create(admin);
     }
 }

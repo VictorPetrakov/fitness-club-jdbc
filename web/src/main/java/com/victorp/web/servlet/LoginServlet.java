@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-import static com.victorp.web.filter.AuthenticationFilter.USER_ID_PARAM;
+import static com.victorp.web.filter.AuthenticationFilter.*;
 
 @WebServlet(name = "LoginServlet" , urlPatterns = "/auth")
 public class LoginServlet extends HttpServlet {
@@ -44,7 +44,9 @@ public class LoginServlet extends HttpServlet {
                     } else {
                         final HttpSession session = req.getSession();
                         session.setAttribute(USER_ID_PARAM, admin.getId());
+                        session.setAttribute(STATUS, admin.getIdRole());
                         req.setAttribute("username", admin.getFirstName() + " " + admin.getLastName());
+                        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                         final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
                         resp.addCookie(myOwnCookie);
                     }
@@ -64,6 +66,7 @@ public class LoginServlet extends HttpServlet {
                         final HttpSession session = req.getSession();
                         session.setAttribute(USER_ID_PARAM, trainer.getId());
                         req.setAttribute("username", trainer.getFirstName() + " " + trainer.getLastName());
+                        req.setAttribute("status", trainer.getIdRole() );
                         final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
                         resp.addCookie(myOwnCookie);
                     }
@@ -83,6 +86,7 @@ public class LoginServlet extends HttpServlet {
                         final HttpSession session = req.getSession();
                         session.setAttribute(USER_ID_PARAM, client.getId());
                         req.setAttribute("username", client.getFirstName() + " " + client.getLastName());
+                        req.setAttribute("status", client.getIdRole() );
                         final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
                         resp.addCookie(myOwnCookie);
 

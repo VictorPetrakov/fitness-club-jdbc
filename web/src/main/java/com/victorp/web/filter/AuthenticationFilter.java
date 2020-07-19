@@ -13,6 +13,7 @@ public class AuthenticationFilter implements Filter {
 
     public static final String USER_ID_PARAM = "userId";
     public static final String IS_ACTIVE_FILTER_PARAM = "isActive";
+    public static final String STATUS = "status";
 
     private boolean active;
 

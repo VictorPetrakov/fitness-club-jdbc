@@ -1,4 +1,8 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored ="false" %>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -56,7 +60,8 @@
 
 	</head>
 	<body>
-		
+
+
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -88,9 +93,17 @@
 								<li><a href="event.html">События</a></li>
 								<li><a href="blog.html">Блог</a></li>
 								<li><a href="contact.html">Контакты</a></li>
-								<li><a href=#>Администрирование</a></li>
-								<li><a href="login.html">Войти</a></li>
-								<!--<li class="btn-cta"><a href="#"><span><i class="icon-cart"></i></span></a></li>-->
+								<c:if test="${sessionScope.status == 1}">
+									<li><a href=administration.jsp>Администрирование</a></li>
+								</c:if>
+								<c:if test="${sessionScope.userId == null}">
+									<li><a href="login.html">Войти</a></li>
+								</c:if>
+								<c:if test="${sessionScope.userId != null}">
+									<li><a href="index.jsp">Выйти</a></li>
+								</c:if>
+
+
 							</ul>
 						</div>
 					</div>

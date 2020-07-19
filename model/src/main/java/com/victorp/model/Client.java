@@ -1,7 +1,6 @@
 package com.victorp.model;
 
-import java.util.Date;
-import java.util.List;
+
 import java.util.Objects;
 
 public class Client {
@@ -12,13 +11,13 @@ public class Client {
     private String lastName;
     private String birthdate;
     private String email;
-    private List<String> groups;
+    private String groups;
     private static final int idRole = 3;
 
     public Client() {
     }
 
-    public Client(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, List<String> groups) {
+    public Client(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, String groups) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -85,11 +84,11 @@ public class Client {
         this.email = email;
     }
 
-    public List<String> getGroups() {
+    public String getGroups() {
         return groups;
     }
 
-    public void setGroups(List<String> groups) {
+    public void setGroups(String groups) {
         this.groups = groups;
     }
 

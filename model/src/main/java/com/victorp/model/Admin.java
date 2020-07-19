@@ -9,7 +9,7 @@ public class Admin {
     private String password;
     private String firstName;
     private String lastName;
-    private Date birthdate;
+    private String birthdate;
     private String email;
     private String group;
     private static final int idRole = 1;
@@ -17,7 +17,7 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(Long id, String login, String password, String firstName, String lastName, Date birthdate, String email, String group) {
+    public Admin(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, String group) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -68,11 +68,11 @@ public class Admin {
         this.lastName = lastName;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
