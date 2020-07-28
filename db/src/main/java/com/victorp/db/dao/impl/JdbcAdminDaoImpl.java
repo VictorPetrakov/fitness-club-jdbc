@@ -110,7 +110,7 @@ public class JdbcAdminDaoImpl implements AdminDao {
     public List<Admin> getAll() throws Exception {
         try (Connection c = JdbcProvider.getConnection()) {
             try (Statement s = c.createStatement()) {
-                try (ResultSet rs = s.executeQuery("SELECT * FROM `admin`")) {
+                try (ResultSet rs = s.executeQuery("SELECT * FROM fitness_club_db.admin")) {
                     List<Admin> adminList = new ArrayList<>();
                     while (rs.next()) {
                         final Admin admin = fillAdmin(rs);
@@ -176,11 +176,13 @@ public class JdbcAdminDaoImpl implements AdminDao {
 
     private Admin fillAdmin(ResultSet rs) throws SQLException {
         final Admin admin = new Admin();
-        admin.setId(rs.getLong("id"));
+        admin.setId(rs.getLong("id_admin"));
         admin.setLogin(rs.getString("login"));
         admin.setPassword(rs.getString("password"));
         admin.setFirstName(rs.getString("firstName"));
         admin.setLastName(rs.getString("lastName"));
+        admin.setBirthdate(rs.getString("birthdate"));
+        admin.setEmail(rs.getString("email"));
         return admin;
     }
 

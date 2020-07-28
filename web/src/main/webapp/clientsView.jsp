@@ -125,24 +125,28 @@
         <div class="container">
             <div class="row">
                 <div class="desc">
+
+                    <form action="viewClients" method="post">
+                        <button class="btn btn-primary btn-block" type="submit">показать</button>
+                    </form>
                     <h2>Клиенты фитнесс клуба</h2>
                     <table>
                         <tr>
-                            <th>id</th>
-                            <th>login</th>
-                            <th>password</th>
-                            <th>firstname</th>
-                            <th>lastname</th>
-                            <th>birthdate</th>
-                            <th>email</th>
-                            <th>groups</th>
+                            <th>id &ensp;</th>
+                            <th>login &ensp;</th>
+                            <th>password &ensp;</th>
+                            <th>firstname &ensp;</th>
+                            <th>lastname &ensp;</th>
+                            <th>birthdate &ensp;</th>
+                            <th>email &ensp;</th>
+                            <th>groups &ensp;</th>
                         </tr>
-                        <c:out value="${requestScope.name}"/>
                         <c:forEach items="${requestScope.clients}" var="clients">
+
                             <tr>
                                 <td><c:out value="${clients.id}" default="----"/></td>
                                 <td><c:out value="${clients.login}" default="----"/></td>
-                                <td><c:out value="${clients.password}" default="----"/> </td>
+                                <td><c:out value="${clients.password}" default="----"/></td>
                                 <td><c:out value="${clients.firstName}" default="----"/></td>
                                 <td><c:out value="${clients.lastName}" default="----"/></td>
                                 <td><c:out value="${clients.birthdate}" default="----"/></td>
@@ -193,7 +197,7 @@
         <div class="container">
             <div class="row row-pb-md">
                 <div class="col-md-3 colorlib-widget">
-                    <h4>About Robust Gym</h4>
+                    <h4>About  FitnessCamp</h4>
                     <p>Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
                         in Bookmarksgrove right at the coast of the Semantics</p>
                     <p>

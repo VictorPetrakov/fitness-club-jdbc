@@ -1,6 +1,6 @@
 package com.victorp.web.servlet;
 
-import com.victorp.model.Client;
+import com.victorp.model.Trainer;
 import com.victorp.services.ViewService;
 import com.victorp.services.impl.ViewServiceImpl;
 
@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name = "ViewServletClients", urlPatterns = "/viewClients")
+@WebServlet(name = "ViewServletTrainers", urlPatterns = "/viewTrainers")
 
-public class ViewServletClients extends HttpServlet {
+public class ViewServletTrainers extends HttpServlet {
 
     private final ViewService viewService = ViewServiceImpl.getInstance();
 
@@ -24,9 +24,9 @@ public class ViewServletClients extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            final List<Client> clientList = viewService.viewClients();
-            req.setAttribute("clients", clientList);
-            req.getServletContext().getRequestDispatcher("/clientsView.jsp").forward(req, resp);
+            final List<Trainer> trainerList = viewService.viewTrainers();
+            req.setAttribute("trainers", trainerList);
+            req.getServletContext().getRequestDispatcher("/trainerView.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }

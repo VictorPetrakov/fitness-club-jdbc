@@ -128,7 +128,7 @@ public class JdbcClientDaoImpl implements ClientDao {
     public List<Client> getAll() throws Exception {
         try (Connection c = JdbcProvider.getConnection()) {
             try (Statement s = c.createStatement()) {
-                try (ResultSet rs = s.executeQuery("SELECT * FROM clients")) {
+                try (ResultSet rs = s.executeQuery("SELECT * FROM fitness_club_db.clients")) {
                     List<Client> clientList = new ArrayList<>();
                     while (rs.next()) {
                         final Client client = fillClient(rs);
@@ -184,7 +184,7 @@ public class JdbcClientDaoImpl implements ClientDao {
 
     private Client fillClient(ResultSet rs) throws SQLException {
         final Client client = new Client();
-        client.setId(rs.getLong("id"));
+        client.setId(rs.getLong("id_clients"));
         client.setLogin(rs.getString("login"));
         client.setPassword(rs.getString("password"));
         client.setFirstName(rs.getString("firstName"));

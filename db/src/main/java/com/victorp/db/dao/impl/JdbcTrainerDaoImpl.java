@@ -2,14 +2,13 @@ package com.victorp.db.dao.impl;
 
 import com.victorp.db.connection.JdbcProvider;
 import com.victorp.db.dao.TrainerDao;
+import com.victorp.db.dao.exception.DAOException;
 import com.victorp.model.Trainer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTrainerDaoImpl implements TrainerDao {
@@ -33,7 +32,7 @@ public class JdbcTrainerDaoImpl implements TrainerDao {
 
 
     @Override
-    public Trainer signUp(String login, String password) throws Exception {
+    public Trainer signUp(String login, String password) throws DAOException {
         try (Connection c = JdbcProvider.getConnection()) {
             try (PreparedStatement ps = c.prepareStatement("SELECT * FROM trainers WHERE login = ? AND password = ?")) {
                 ps.setString(1, login);
@@ -57,8 +56,8 @@ public class JdbcTrainerDaoImpl implements TrainerDao {
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("Error during get client by login", e);
-            throw new Exception("sd", e);
+            LOGGER.error("Error during get client signIN", e);
+            throw new DAOException("Ошибка при аунтификации", e);
         }
 
     }
@@ -92,17 +91,68 @@ public class JdbcTrainerDaoImpl implements TrainerDao {
 
     @Override
     public Trainer getByGroup(String group) throws Exception {
-        return null;
+        try (Connection c = JdbcProvider.getConnection()) {
+            try (PreparedStatement ps = c.prepareStatement("SELECT * FROM trainers WHERE groups = ?")) {
+                ps.setString(1, group);
+                try (ResultSet res = ps.executeQuery()) {
+                    if (res.next()) {
+                        final Trainer trainer = new Trainer();
+                        trainer.setId(res.getLong("id_trainers"));
+                        trainer.setLogin(res.getString("login"));
+                        trainer.setPassword(res.getString("password"));
+                        trainer.setFirstName(res.getString("firstname"));
+                        trainer.setLastName(res.getString("lastname"));
+                        trainer.setEmail(res.getString("email"));
+                        trainer.setGroup(res.getString("groups"));
+                        return trainer;
+                    } else {
+                        return null;
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error during get client by login", e);
+            throw new Exception("sd", e);
+        }
     }
 
     @Override
     public Trainer get(Long id) throws Exception {
-        return null;
+        try (Connection c = JdbcProvider.getConnection()) {
+            try (PreparedStatement ps = c.prepareStatement("SELECT * FROM trainers WHERE id = ?")) {
+                ps.setLong(1, id);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return fillTrainer(rs);
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error during get contact by id", e);
+            throw new DAOException("Error during get contact by id", e);
+        }
     }
 
     @Override
     public List<Trainer> getAll() throws Exception {
-        return null;
+        try (Connection c = JdbcProvider.getConnection()) {
+            try (Statement s = c.createStatement()) {
+                try (ResultSet rs = s.executeQuery("SELECT * FROM fitness_club_db.trainers")) {
+                    List<Trainer> trainerList = new ArrayList<>();
+                    while (rs.next()) {
+                        final Trainer trainer = fillTrainer(rs);
+                        trainerList.add(trainer);
+                    }
+                    return trainerList;
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error during get all contacts", e);
+            throw new Exception("Error during get all contacts", e);
+        }
     }
 
     @Override
@@ -123,12 +173,49 @@ public class JdbcTrainerDaoImpl implements TrainerDao {
 
     @Override
     public void update(Trainer item) throws Exception {
-
+        try (Connection c = JdbcProvider.getConnection()) {
+            try (PreparedStatement ps = c.prepareStatement(
+                    "UPDATE `trainers` SET " +
+                            "login = ?, password = ?, firstName = ?, lastName= ?" +
+                            "WHERE id = ?")) {
+                fillTrainerQuery(item, ps);
+                ps.setLong(5, item.getId());
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            String msg = "Error during update contact";
+            LOGGER.error(msg, e);
+            throw new Exception(msg, e);
+        }
     }
 
     @Override
     public void delete(Long id) throws Exception {
-
+        try (Connection c = JdbcProvider.getConnection()) {
+            try (PreparedStatement ps = c.prepareStatement("DELETE FROM `trainers` WHERE id = ?")) {
+                ps.setLong(1, id);
+                final int i = ps.executeUpdate(); // 1 or 0;
+                if (i == 0) {
+                    throw new Exception("No trainer for id=" + id);
+                }
+            }
+        } catch (Exception e) {
+            String msg = "Error during delete contact";
+            LOGGER.error(msg, e);
+            throw new Exception(msg, e);
+        }
+    }
+    private Trainer fillTrainer(ResultSet rs) throws SQLException {
+        final Trainer trainer = new Trainer();
+        trainer.setId(rs.getLong("id_trainers"));
+        trainer.setLogin(rs.getString("login"));
+        trainer.setPassword(rs.getString("password"));
+        trainer.setFirstName(rs.getString("firstName"));
+        trainer.setLastName(rs.getString("lastName"));
+        trainer.setBirthdate(rs.getString("birthdate"));
+        trainer.setEmail(rs.getString("email"));
+        trainer.setGroup(rs.getString("groups"));
+        return trainer;
     }
 
     private void fillTrainerQuery(Trainer trainer, PreparedStatement ps) throws SQLException {

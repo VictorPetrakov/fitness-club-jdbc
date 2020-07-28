@@ -11,6 +11,7 @@ import com.victorp.services.ViewService;
 import java.util.List;
 
 public class ViewServiceImpl implements ViewService {
+
     private static ViewService instance;
 
     public static ViewService getInstance() {
@@ -20,7 +21,6 @@ public class ViewServiceImpl implements ViewService {
                     instance = new ViewServiceImpl();
                 }
             }
-
         }
         return instance;
     }
@@ -32,7 +32,7 @@ public class ViewServiceImpl implements ViewService {
     @Override
     public List<Client> viewClients() throws Exception {
         JdbcClientDaoImpl jdbcClientDaoImpl = new JdbcClientDaoImpl();
-        List<Client> clientList =jdbcClientDaoImpl.getAll();
+        List<Client> clientList = jdbcClientDaoImpl.getAll();
         return clientList;
     }
 

@@ -1,5 +1,7 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+<%@ page errorPage="401.jsp" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -9,9 +11,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>FitnessCamp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta name="author" content="" />
+        <meta name="description" content=""/>
+        <meta name="keywords" content=""/>
+        <meta name="author" content=""/>
 
         <!-- Facebook and Twitter integration -->
         <meta property="og:title" content=""/>
@@ -19,10 +21,10 @@
         <meta property="og:url" content=""/>
         <meta property="og:site_name" content=""/>
         <meta property="og:description" content=""/>
-        <meta name="twitter:title" content="" />
-        <meta name="twitter:image" content="" />
-        <meta name="twitter:url" content="" />
-        <meta name="twitter:card" content="" />
+        <meta name="twitter:title" content=""/>
+        <meta name="twitter:image" content=""/>
+        <meta name="twitter:url" content=""/>
+        <meta name="twitter:card" content=""/>
 
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900" rel="stylesheet">
 
@@ -87,9 +89,7 @@
                             <li><a href="event.html">События</a></li>
                             <li><a href="blog.html">Блог</a></li>
                             <li><a href="contact.html">Контакты</a></li>
-                            <c:if test="${sessionScope.status == 1}">
-                                <li><a href=administration.jsp>Администрирование</a></li>
-                            </c:if>
+                            <li><a href=administration.jsp>Администрирование</a></li>
                             <c:if test="${sessionScope.userId == null}">
                                 <li><a href="login.html">Войти</a></li>
                             </c:if>
@@ -111,8 +111,9 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
                                 <div class="slider-text-inner text-center">
-                                    <h1>Администрирование</h1>
-                                    <h2><span><a href="index.jsp">Главная</a> | Администрирование</span></h2>
+                                    <h1>Ошибка 401</h1>
+                                    <h2>Для просмотра этой страницы необходимо войти в систему или зарегистрироваться</h2>
+                                    <h2><span><a href="index.jsp">Главная</a> | <a href="login.html">Войти</a> | <a href="registration.html">Зарегистрироваться</a></span></h2>
                                 </div>
                             </div>
                         </div>
@@ -122,68 +123,8 @@
         </div>
     </aside>
 
-    <div class="colorlib-classes">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/client.jpg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="registration.html">Зарегистрировать клиента</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/trainer.jpeg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="registrationTrainers.html">Зарегистрировать тренера</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/admin.jpg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="registrationAdmin.html">Зарегистрировать администратора</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/classes-1.jpg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="clientsView.jsp">Посмотреть всех клиентов</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/classes-6.jpg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="trainerView.jsp">Посмотреть всех тренеров</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-box">
-                    <div class="classes">
-                        <div class="classes-img" style="background-image: url(images/classes-7.jpg);">
-                        </div>
-                        <div class="desc">
-                            <h3><a href="adminView.jsp">Посмотреть всех администраторов</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="colorlib-subscribe" class="subs-img" style="background-image: url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+    <div id="colorlib-subscribe" class="subs-img" style="background-image: url(images/img_bg_2.jpg);"
+         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -199,7 +140,8 @@
                             <form class="form-inline qbstp-header-subscribe">
                                 <div class="col-three-forth">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="email" placeholder="Enter your email">
+                                        <input type="text" class="form-control" id="email"
+                                               placeholder="Enter your email">
                                     </div>
                                 </div>
                                 <div class="col-one-third">
@@ -218,8 +160,9 @@
         <div class="container">
             <div class="row row-pb-md">
                 <div class="col-md-3 colorlib-widget">
-                    <h4>About Robust Gym</h4>
-                    <p>Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
+                    <h4>About FitnessCamp</h4>
+                    <p>Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
+                        in Bookmarksgrove right at the coast of the Semantics</p>
                     <p>
                     <ul class="colorlib-social-icons">
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -287,10 +230,16 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <p>
-                            <small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a  target="_blank">VictorPetrakov</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br>
-                            <small class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>, <a href="http://pexels.com/" target="_blank">Pexels</a></small>
+                            <small class="block">&copy;
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | This template is made with <i class="icon-heart"
+                                                                                    aria-hidden="true"></i> by <a
+                                        target="_blank">VictorPetrakov</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </small><br>
+                            <small class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>,
+                                <a href="http://pexels.com/" target="_blank">Pexels</a></small>
                         </p>
                     </div>
                 </div>
@@ -327,3 +276,4 @@
 
 </body>
 </html>
+
