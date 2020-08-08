@@ -123,7 +123,7 @@
         </div>
     </aside>
 
-    <div id="colorlib-subscribe" class="subs-img" style="background-image: url(images/img_bg_2.jpg);"
+    <div id="colorlib-subscribe" class="subs-img"   style="background-image: url(images/img_bg_2.jpg);"
          data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
