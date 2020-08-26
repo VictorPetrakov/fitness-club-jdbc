@@ -3,15 +3,8 @@ package com.victorp.model;
 import java.util.Date;
 import java.util.Objects;
 
-public class Admin {
-    private Long id;
-    private String login;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String birthdate;
-    private String email;
-    private String group;
+public class Admin extends User{
+
     private static final int idRole = 1;
 
     public Admin() {

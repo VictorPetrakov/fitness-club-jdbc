@@ -4,16 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Trainer {
+public class Trainer extends User{
 
-    private Long id;
-    private String login;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String birthdate;
-    private String email;
-    private String group;
+
     private static final int idRole = 2;
 
 

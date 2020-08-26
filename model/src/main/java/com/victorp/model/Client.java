@@ -3,21 +3,14 @@ package com.victorp.model;
 
 import java.util.Objects;
 
-public class Client {
-    private Long id;
-    private String login;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String birthdate;
-    private String email;
-    private String groups;
+public class Client extends User{
+
     private static final int idRole = 3;
 
     public Client() {
     }
 
-    public Client(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, String groups) {
+    public Client(Long id, String login, String password, String firstName, String lastName, String birthdate, String email, String group) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -25,7 +18,7 @@ public class Client {
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.email = email;
-        this.groups = groups;
+        this.group = group;
     }
 
     public Long getId() {
@@ -84,12 +77,12 @@ public class Client {
         this.email = email;
     }
 
-    public String getGroups() {
-        return groups;
+    public String getGroup() {
+        return group;
     }
 
-    public void setGroups(String groups) {
-        this.groups = groups;
+    public void setGroup(String groups) {
+        this.group = groups;
     }
 
     public static int getIdRole() {
@@ -108,12 +101,12 @@ public class Client {
                 Objects.equals(lastName, client.lastName) &&
                 Objects.equals(birthdate, client.birthdate) &&
                 Objects.equals(email, client.email) &&
-                Objects.equals(groups, client.groups);
+                Objects.equals(group, client.group);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, firstName, lastName, birthdate, email, groups);
+        return Objects.hash(id, login, password, firstName, lastName, birthdate, email, group);
     }
 
     @Override
@@ -126,7 +119,7 @@ public class Client {
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 ", email='" + email + '\'' +
-                ", groups=" + groups +
+                ", groups=" + group +
                 '}';
     }
 }
