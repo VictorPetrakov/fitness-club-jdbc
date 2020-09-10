@@ -46,7 +46,7 @@ public class JdbcViewTest {
         client.setLastName(rs.getString("lastName"));
         client.setBirthdate(rs.getString("birthdate"));
         client.setEmail(rs.getString("email"));
-        client.setGroups(rs.getString("groups"));
+        client.setGroup(rs.getString("groups"));
         return client;
     }
 

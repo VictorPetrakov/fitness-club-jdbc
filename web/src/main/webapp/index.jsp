@@ -93,6 +93,7 @@
 								<li><a href="event.html">События</a></li>
 								<li><a href="blog.html">Блог</a></li>
 								<li><a href="contact.html">Контакты</a></li>
+								<li><a href="TrainerPage.jsp">Тренерская</a></li>
 								<c:if test="${sessionScope.status == 1}">
 									<li><a href=administration.jsp>Администрирование</a></li>
 								</c:if>

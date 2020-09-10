@@ -46,7 +46,7 @@ public class JdbcClientDaoImpl implements ClientDao {
                         client.setLastName(res.getString("lastname"));
                         client.setBirthdate(res.getString("birthdate"));
                         client.setEmail(res.getString("email"));
-                        client.setGroups(res.getString("groups"));
+                        client.setGroup(res.getString("groups"));
                         return client;
                     } else {
                         return null;
@@ -89,7 +89,7 @@ public class JdbcClientDaoImpl implements ClientDao {
                         client.setLastName(res.getString("lastname"));
                         client.setBirthdate(res.getString("birthdate"));
                         client.setEmail(res.getString("email"));
-                        client.setGroups(res.getString("groups"));
+                        client.setGroup(res.getString("groups"));
                         return client;
                     } else {
                         return null;
@@ -191,7 +191,7 @@ public class JdbcClientDaoImpl implements ClientDao {
         client.setLastName(rs.getString("lastName"));
         client.setBirthdate(rs.getString("birthdate"));
         client.setEmail(rs.getString("email"));
-        client.setGroups(rs.getString("groups"));
+        client.setGroup(rs.getString("groups"));
         return client;
     }
 
