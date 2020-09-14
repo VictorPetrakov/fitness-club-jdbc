@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String login = req.getParameter(LOGIN_PARAM);
         final String password = req.getParameter(PASSWORD_PARAM);
-        final int role = Integer.valueOf(req.getParameter(ID_ROLE));
+        final int role = Integer.parseInt(req.getParameter(ID_ROLE));
 
         final Client client;
         final Trainer trainer;
