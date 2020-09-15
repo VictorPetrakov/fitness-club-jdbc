@@ -38,7 +38,6 @@ public class LoginServlet extends HttpServlet {
                 try {
                     admin = authorizationService.authorizeAdmin(login, password);
                     final String contextPath = req.getContextPath();
-
                     if (admin == null) {
                         resp.sendRedirect(contextPath + "/login.html");
                     } else {
@@ -46,7 +45,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute(USER_ID_PARAM, admin.getId());
                         session.setAttribute(STATUS, admin.getIdRole());
                         req.setAttribute("username", admin.getFirstName() + " " + admin.getLastName());
-                        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+                        getServletContext().getRequestDispatcher("index.jsp").forward(req, resp);
                         final Cookie myOwnCookie = new Cookie("MyOwnCookie", "PC");
                         resp.addCookie(myOwnCookie);
                     }
@@ -97,9 +96,10 @@ public class LoginServlet extends HttpServlet {
                 }
                 break;
         }
-            resp.setContentType("text/html;charset=UTF-8");
-            final RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-            dispatcher.include(req, resp);
-        }
+
+        resp.setContentType("text/html;charset=UTF-8");
+        final RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        dispatcher.include(req, resp);
     }
+}
 
